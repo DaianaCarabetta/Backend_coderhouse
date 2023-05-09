@@ -1,0 +1,45 @@
+[{
+    "id": 1,
+    "title": "honey collar", 
+    "description": "collar para perro de poliester suave", 
+    "price": 7100, 
+    "thumbnail" : "sin imagen", 
+    "code": 203580,
+    "stock": 8
+},
+
+{
+    "title": "helsinki collar", 
+    "description": "collar para perro de poliester suave", 
+    "price": 5100, 
+    "thumbnail" : "sin imagen", 
+    "code": 203581,
+    "stock": 10 
+},
+
+{
+    "title": "pacco collar", 
+    "description": "collar para perro de poliester suave", 
+    "price": 8100, 
+    "thumbnail" : "sin imagen", 
+    "code": 203582,
+    "stock": 9
+},
+
+{
+    "title": "bloom collar",
+    "description": "collar para perro de poliester suave", 
+    "price": 8100, 
+    "thumbnail" : "sin imagen", 
+    "code": 203583,
+    "stock": 15
+},
+
+{
+    "title": "army collar",
+    "description": "collar para perro de poliester suave", 
+    "price": 7100, 
+    "thumbnail" : "sin imagen", 
+    "code": 203584,
+    "stock": 12 
+}]
