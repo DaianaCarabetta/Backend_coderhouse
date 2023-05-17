@@ -1,5 +1,6 @@
 import Product from "./Product.js";
 import fs from "fs";
+import { v4 as uuidv4 } from 'uuid';
 
 class ProductManager {
     constructor(){
@@ -17,22 +18,30 @@ class ProductManager {
         return products
     }
 
-    async addProduct(title, description, price, thumbnail, code, stock){
-        const existentProduct = await this.getProductByCode(code);
+    async createProduct(product){
+        const existentProduct = await this.getProductByCode(product.code);
         if(existentProduct){
-            console.error('Existent Product.')
+            return null;
         }else{
-            const newProduct = new Product(title, description, price, thumbnail, code, stock);
+            const newProduct = new Product(
+              product.title,
+              product.description,
+              product.price,
+              product.thumbnail,
+              product.code,
+              product.stock,
+              product.status,
+              product.category);
             newProduct.id = await this.getNewId();
             const products = await this.getProducts();
             products.push(newProduct);
             await fs.promises.writeFile(this.path, JSON.stringify(products))
+            return newProduct;
         }  
     }
 
     async getNewId(){
-        const products = await this.getProducts();
-        return products.length + 1;
+        return uuidv4()
     }
 
     async getProductById(id){
@@ -41,7 +50,6 @@ class ProductManager {
         if(existentProduct){
             return existentProduct;
         }else{
-            console.error('Not found.')
             return null;
         }
     }
@@ -71,8 +79,9 @@ class ProductManager {
                 }
             })
             await fs.promises.writeFile(this.path, JSON.stringify(updateProducts))
+            return existentProduct;
         }else{
-            console.error('Product not found.')
+           return null;
         }
     }
 
@@ -84,7 +93,7 @@ class ProductManager {
             await fs.promises.writeFile(this.path, JSON.stringify(purgedProducts))
             return existentProduct
         }else {
-            console.error('Product not found.')
+            return null;
         }
     }
 }
