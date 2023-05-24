@@ -2,15 +2,15 @@ import { Router } from "express";
 import ProductManager from "../ProductManager.js";
 import { validateProduct } from "../utils/index.js";
 
-const productRouter = Router();
+const productsRouter = Router();
 const productManager = new ProductManager();
 
-productRouter.get('/', async (req, res) =>{
+productsRouter.get('/', async (req, res) =>{
     const result = await productManager.getProducts(req.query);
     res.send(result);
 })
 
-productRouter.get('/:pid', async (req, res) =>{
+productsRouter.get('/:pid', async (req, res) =>{
     const id = req.params.pid;
     const existentProduct = await productManager.getProductById(id)
     if (existentProduct){
@@ -20,7 +20,7 @@ productRouter.get('/:pid', async (req, res) =>{
     }
 })
 
-productRouter.post('/', async (req, res) => {
+productsRouter.post('/', async (req, res) => {
     const product = req.body;
     const validationResult = validateProduct(product)
     if(validationResult.error){
@@ -35,7 +35,7 @@ productRouter.post('/', async (req, res) => {
     }
 })
 
-productRouter.put('/:pid', async (req, res) => {
+productsRouter.put('/:pid', async (req, res) => {
     const id = req.params.pid;
     const data = req.body;
     const updatedProd = await productManager.updateProduct(id, data)
@@ -46,7 +46,7 @@ productRouter.put('/:pid', async (req, res) => {
     }
 })
 
-productRouter.delete('/:pid', async (req, res) => {
+productsRouter.delete('/:pid', async (req, res) => {
     const id = req.params.pid;
     const deletedProduct = await productManager.deleteProduct(id)
     if(!deletedProduct){
@@ -56,4 +56,4 @@ productRouter.delete('/:pid', async (req, res) => {
     }
 })
 
-export default productRouter;
+export default productsRouter;
