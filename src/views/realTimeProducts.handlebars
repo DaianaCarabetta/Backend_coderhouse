@@ -42,7 +42,7 @@
 				</thead>
 				<tbody id="table-container">
 					{{#each products}}
-					<tr id="product-row-{{this.id}}">
+					<tr id="product-row-{{this._id}}">
 						<td class="col-3">{{this.title}}</td>
 						<td class="col-3">{{this.description}}</td>
 						<td class="col-2">{{this.category}}</td>
@@ -50,7 +50,7 @@
 						<td class="col-1">{{this.price}}</td>
 						<td class="col-1">{{this.stock}}</td>
 						<td class="col-1">
-							<a class="delete" onclick="deleteProduct('{{this.id}}')" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
+							<a class="delete" onclick="deleteProduct('{{this._id}}')" data-toggle="modal"><i class="material-icons" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					{{/each}}
